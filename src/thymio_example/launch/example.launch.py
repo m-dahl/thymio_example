@@ -40,7 +40,8 @@ def generate_launch_description():
         additional_env= {'WEBOTS_ROBOT_NAME': 'Thymio II'},
         executable='thymio_controller',
         namespace='/thymio1',
-        parameters=[{'synchronization': synchronization}],
+        parameters=[{'synchronization': synchronization,
+                     'use_joint_state_publisher': True}],
         output='screen'
     )
 
@@ -49,7 +50,8 @@ def generate_launch_description():
         additional_env= {'WEBOTS_ROBOT_NAME': 'Thymio II_2'},
         executable='thymio_controller',
         namespace='/thymio2',
-        parameters=[{'synchronization': synchronization}],
+        parameters=[{'synchronization': synchronization,
+                     'use_joint_state_publisher': True}],
         output='screen'
     )
 
