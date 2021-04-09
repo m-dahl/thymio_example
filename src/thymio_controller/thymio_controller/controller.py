@@ -21,6 +21,11 @@ import rclpy
 
 from std_msgs.msg import Float64
 from geometry_msgs.msg import Twist
+from geometry_msgs.msg import TransformStamped
+from tf2_msgs.msg import TFMessage
+from tf2_ros import TransformBroadcaster
+
+import math
 
 import os
 
@@ -47,11 +52,60 @@ class ExampleController(WebotsNode):
                                                          self.cmdVel_callback,
                                                          10)
 
+        # the supervisor node, which we use to get absolute position for now
+        self.robot_node = self.robot.getSelf()
+        self.translation_field = self.robot_node.getField("translation")
+        self.rotation_field = self.robot_node.getField("rotation")
+
+        # tf broadcaster
+        self.tf_broadcaster = TransformBroadcaster(self)
+
+
     def sensor_callback(self):
         # Publish distance sensor value
         msg = Float64()
         msg.data = self.frontSensor.getValue()
         self.sensorPublisher.publish(msg)
+
+        trans = self.translation_field.getSFVec3f()
+        #print("MY_ROBOT is at position: %g %g %g" % (trans[0], trans[1], trans[2]))
+        
+        rot = self.rotation_field.getSFRotation()
+        #print("MY_ROBOT is at orientation %g %g %g %g" % (rot[0], rot[1], rot[2], rot[3]))
+
+        now = self.get_clock().now().to_msg()
+        odom_tf = TransformStamped()
+        base_link_tf = TransformStamped()
+        
+        base_link_tf.transform.translation.x = trans[0]
+        base_link_tf.transform.translation.y = trans[1]
+        base_link_tf.transform.translation.z = 0.0 # ignore z 
+
+        # http://www.cse.unsw.edu.au/~cs9018/vrml98/quat.html
+        base_link_tf.transform.rotation.x = rot[0] * math.sin(rot[3] / 2)
+        base_link_tf.transform.rotation.y = rot[1] * math.sin(rot[3] / 2)
+        base_link_tf.transform.rotation.z = rot[2] * math.sin(rot[3] / 2)
+        base_link_tf.transform.rotation.w = math.cos(rot[3] / 2)
+
+        base_link_tf.header.frame_id = "odom"
+        base_link_tf.child_frame_id = "base_link"
+        base_link_tf.header.stamp = now
+
+        self.tf_broadcaster.sendTransform(base_link_tf)
+
+        odom_tf.transform.translation.x = 0.0;
+        odom_tf.transform.translation.y = 0.0;
+        odom_tf.transform.translation.z = 0.0;
+
+        odom_tf.transform.rotation.x = 0.0
+        odom_tf.transform.rotation.y = 0.0
+        odom_tf.transform.rotation.z = 0.0
+        odom_tf.transform.rotation.w = 1.0
+
+        odom_tf.header.frame_id = "map"
+        odom_tf.child_frame_id = "odom"
+        odom_tf.header.stamp = now
+        self.tf_broadcaster.sendTransform(odom_tf)
 
     def motor_callback(self, request, response):
         self.leftMotor.setVelocity(request.left_speed)
