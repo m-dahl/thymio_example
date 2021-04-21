@@ -18,7 +18,7 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 
-install(DIRECTORY launch config worlds maps
+install(DIRECTORY launch config worlds protos maps
   DESTINATION share/${PROJECT_NAME})
 
 

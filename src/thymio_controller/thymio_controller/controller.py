@@ -87,6 +87,28 @@ class ExampleController(WebotsNode):
         base_link_tf.transform.rotation.z = rot[2] * math.sin(rot[3] / 2)
         base_link_tf.transform.rotation.w = math.cos(rot[3] / 2)
 
+        # create static transform +90 around X and +180 around Z.
+
+        # w0 = base_link_tf.transform.rotation.w
+        # x0 = base_link_tf.transform.rotation.x
+        # y0 = base_link_tf.transform.rotation.y
+        # z0 = base_link_tf.transform.rotation.z
+
+        # w1 = 0.0
+        # x1 = 0.0
+        # y1 = 0.0
+        # z1 = 1.0
+
+        # w2 = -x1*x0 - y1*y0 - z1*z0 + w1*w0
+        # x2 = x1*w0 + y1*z0 - z1*y0 + w1*x0
+        # y2 = -x1*z0 + y1*w0 + z1*x0 + w1*y0
+        # z2 = x1*y0 - y1*x0 + z1*w0 + w1*z0
+
+        # base_link_tf.transform.rotation.x = x2
+        # base_link_tf.transform.rotation.y = y2
+        # base_link_tf.transform.rotation.z = z2
+        # base_link_tf.transform.rotation.w = w2
+
         base_link_tf.header.frame_id = "odom"
         base_link_tf.child_frame_id = "base_link"
         base_link_tf.header.stamp = now

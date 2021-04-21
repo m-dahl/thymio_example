@@ -102,11 +102,11 @@ def generate_launch_description():
                           'use_namespace': 'True',
                           'rviz_config': rviz_config}.items())
 
-    rviz_2 = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(os.path.join(nav2_launch_dir, 'rviz_launch.py')),
-        launch_arguments={'namespace': '/thymio2',
-                          'use_namespace': 'True',
-                          'rviz_config': rviz_config}.items())
+    # rviz_2 = IncludeLaunchDescription(
+    #     PythonLaunchDescriptionSource(os.path.join(nav2_launch_dir, 'rviz_launch.py')),
+    #     launch_arguments={'namespace': '/thymio2',
+    #                       'use_namespace': 'True',
+    #                       'rviz_config': rviz_config}.items())
     
 
     return launch.LaunchDescription([
@@ -114,9 +114,9 @@ def generate_launch_description():
         controller_1,
         controller_2,
         nav2_1,
-        nav2_2,
+#        nav2_2,
         rviz_1,
-        rviz_2,
+#        rviz_2,
         launch.actions.RegisterEventHandler(
             event_handler=launch.event_handlers.OnProcessExit(
                 target_action=webots,
