@@ -28,37 +28,42 @@ import launch_ros.actions
 from webots_ros2_core.utils import ControllerLauncher
 from webots_ros2_core.webots_launcher import WebotsLauncher
 from ament_index_python.packages import get_package_share_directory
-
+from nav2_common.launch import ReplaceString
 
 def generate_launch_description():
-    # Webots
     webots = WebotsLauncher(
         world=os.path.join(get_package_share_directory('thymio_example'), 'worlds',
                            'ros_example.wbt')
     )
 
+    stop_webots = launch.actions.RegisterEventHandler(
+            event_handler=launch.event_handlers.OnProcessExit(
+                target_action=webots,
+                on_exit=[launch.actions.EmitEvent(event=launch.events.Shutdown())],
+            )
+        )
+
+    webots_nodes = [webots, stop_webots]
+
+    thymio1 = make_thymio('thymio1', 'Thymio II')
+    thymio2 = make_thymio('thymio2', 'Thymio II_2')
+
+    nodes = webots_nodes + thymio1 + thymio2
+
+    return launch.LaunchDescription(nodes)
+
+def make_thymio(name, webots_name):
     # Controller node
     synchronization = launch.substitutions.LaunchConfiguration('synchronization', default=False)
-    controller_1 = ControllerLauncher(
+    controller = ControllerLauncher(
         package='thymio_controller',
-        additional_env= {'WEBOTS_ROBOT_NAME': 'Thymio II'},
+        additional_env= {'WEBOTS_ROBOT_NAME': webots_name},
         executable='thymio_controller',
-        namespace='/thymio1',
+        namespace=name,
         parameters=[{'synchronization': synchronization,
                      'use_joint_state_publisher': True}],
         output='screen',
-        remappings=[("/tf", "/thymio1/tf")]
-    )
-
-    controller_2 = ControllerLauncher(
-        package='thymio_controller',
-        additional_env= {'WEBOTS_ROBOT_NAME': 'Thymio II_2'},
-        executable='thymio_controller',
-        namespace='/thymio2',
-        parameters=[{'synchronization': synchronization,
-                     'use_joint_state_publisher': True}],
-        output='screen',
-        remappings=[("/tf", "/thymio2/tf")]        
+        remappings=[("/tf", "tf")] # make sure tf gets namespaced
     )
 
     # nav2 stack
@@ -66,13 +71,15 @@ def generate_launch_description():
     nav2_launch_dir = os.path.join(nav2_bringup_dir, 'launch')
 
     map_yaml = os.path.join(get_package_share_directory('thymio_example'), 'maps', 'ros_example.yaml')
-    # nav2_params = os.path.join(nav2_bringup_dir, 'params', 'nav2_params.yaml')
     nav2_params = os.path.join(get_package_share_directory('thymio_example'), 'config', 'nav2_params.yaml')
     nav2_bt_xml = os.path.join(get_package_share_directory('nav2_bt_navigator'),
                           'behavior_trees', 'navigate_w_replanning_and_recovery.xml')
-    nav2_1 = IncludeLaunchDescription(
+
+    rviz_config = os.path.join(get_package_share_directory('thymio_example'), 'config', 'thymio_view.rviz')
+
+    nav2 = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(os.path.join(nav2_launch_dir, 'bringup_launch.py')),
-        launch_arguments={'namespace': '/thymio1',
+        launch_arguments={'namespace': name,
                           'use_namespace': 'True',
                           'slam': 'False',
                           'map': map_yaml,
@@ -81,47 +88,14 @@ def generate_launch_description():
                           'default_bt_xml_filename': nav2_bt_xml,
                           'autostart': 'True'}.items())
 
-    nav2_2 = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(os.path.join(nav2_launch_dir, 'bringup_launch.py')),
-        launch_arguments={'namespace': '/thymio2',
-                          'use_namespace': 'True',
-                          'slam': 'False',
-                          'map': map_yaml,
-                          'use_sim_time': 'False',
-                          'params_file': nav2_params,
-                          'default_bt_xml_filename': nav2_bt_xml,
-                          'autostart': 'True'}.items())
-    
+    rviz_config = ReplaceString(
+        source_file=rviz_config,
+        replacements={'<robot_namespace>': ('/' + name)})
 
-    
-    # rviz 
-    rviz_config = os.path.join(get_package_share_directory('thymio_example'), 'config', 'ros_example2.rviz')
-    rviz_1 = IncludeLaunchDescription(
+    rviz = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(os.path.join(nav2_launch_dir, 'rviz_launch.py')),
-        launch_arguments={'namespace': '/thymio1',
+        launch_arguments={'namespace': name,
                           'use_namespace': 'True',
                           'rviz_config': rviz_config}.items())
-
-    rviz_config_2 = os.path.join(get_package_share_directory('thymio_example'), 'config', 'ros_example2_2.rviz')
-    rviz_2 = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(os.path.join(nav2_launch_dir, 'rviz_launch.py')),
-        launch_arguments={'namespace': '/thymio2',
-                          'use_namespace': 'True',
-                          'rviz_config': rviz_config_2}.items())
     
-
-    return launch.LaunchDescription([
-        webots,
-        controller_1,
-        controller_2,
-        nav2_1,
-        nav2_2,
-        rviz_1,
-        rviz_2,
-        launch.actions.RegisterEventHandler(
-            event_handler=launch.event_handlers.OnProcessExit(
-                target_action=webots,
-                on_exit=[launch.actions.EmitEvent(event=launch.events.Shutdown())],
-            )
-        ),
-    ])
+    return [controller, nav2, rviz]
