@@ -45,19 +45,21 @@ def generate_launch_description():
 
     webots_nodes = [webots, stop_webots]
 
-    thymio1 = make_thymio('thymio1', 'Thymio II')
-    thymio2 = make_thymio('thymio2', 'Thymio II_2')
+    thymio1 = make_thymio('thymio1')
+    thymio2 = make_thymio('thymio2')
+    thymio3 = make_thymio('thymio3')
+    thymio4 = make_thymio('thymio4')
 
-    nodes = webots_nodes + thymio1 + thymio2
+    nodes = webots_nodes + thymio1 + thymio2 + thymio3 + thymio4
 
     return launch.LaunchDescription(nodes)
 
-def make_thymio(name, webots_name):
+def make_thymio(name):
     # Controller node
     synchronization = launch.substitutions.LaunchConfiguration('synchronization', default=False)
     controller = ControllerLauncher(
         package='thymio_controller',
-        additional_env= {'WEBOTS_ROBOT_NAME': webots_name},
+        additional_env= {'WEBOTS_ROBOT_NAME': name},
         executable='thymio_controller',
         namespace=name,
         parameters=[{'synchronization': synchronization,

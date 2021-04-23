@@ -17,7 +17,7 @@ WorldInfo {
 Viewpoint {
   orientation 0.894843741365092 0.2237312219398367 0.3862628882885746 1.1489302943029718
   position 5.498822009626265 -3.0266992585602437 3.82055585870133
-  follow "Thymio II"
+  follow "thymio1"
 }
 TexturedBackground {
 }
@@ -32,6 +32,7 @@ CircleArena {
 DEF THYMIO2 Thymio2_enu {
   translation 2.5 2.65 0
   rotation -6.26277e-07 -1.20931e-06 1 -3.1415853071795863
+  name "thymio1"
   controller "<extern>"
   controllerArgs [
     ""
@@ -41,10 +42,31 @@ DEF THYMIO2 Thymio2_enu {
 DEF THYMIO2_2 Thymio2_enu {
   translation 2.5 2.35 0
   rotation -6.26277e-07 -1.20931e-06 1 -3.1415853071795863
-  name "Thymio II_2"
+  name "thymio2"
   controller "<extern>"
   controllerArgs [
     ""
   ]
   supervisor TRUE
 }
+DEF THYMIO2_3 Thymio2_enu {
+  translation 2.5 2.05 0
+  rotation -6.26277e-07 -1.20931e-06 1 -3.1415853071795863
+  name "thymio3"
+  controller "<extern>"
+  controllerArgs [
+    ""
+  ]
+  supervisor TRUE
+}
+DEF THYMIO2_4 Thymio2_enu {
+  translation 2.5 1.75 0
+  rotation -6.26277e-07 -1.20931e-06 1 -3.1415853071795863
+  name "thymio4"
+  controller "<extern>"
+  controllerArgs [
+    ""
+  ]
+  supervisor TRUE
+}
+
