@@ -17,3 +17,8 @@ Teleop and koint states robot 2:
 ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r __ns:=/thymio2
 ros2 topic echo /thymio2/joint_states
 ```
+
+Send four simultaneous goals:
+```
+./test.bash
+```
