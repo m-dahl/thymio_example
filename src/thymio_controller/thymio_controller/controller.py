@@ -33,8 +33,7 @@ class ExampleController(WebotsNode):
 
     def __init__(self, args):
         super().__init__('example_controller', args)
-        self.sensorTimer = self.create_timer(0.001 * self.timestep,
-                                             self.sensor_callback)
+        self.jointTimer = self.create_timer(0.05, self.joint_callback)
         self.leftMotor = self.robot.getMotor('motor.left')
         self.rightMotor = self.robot.getMotor('motor.right')
         self.leftMotor.setPosition(float('inf'))
@@ -44,10 +43,7 @@ class ExampleController(WebotsNode):
         self.motorMaxSpeed = self.leftMotor.getMaxVelocity()
         self.motorService = self.create_service(SetDifferentialWheelSpeed,
                                                 'motor', self.motor_callback)
-        self.sensorPublisher = self.create_publisher(Float64, 'sensor', 10)
-        # front central proximity sensor
-        self.frontSensor = self.robot.getDistanceSensor('prox.horizontal.2')
-        self.frontSensor.enable(self.timestep)
+
         self.cmdVelSubscriber = self.create_subscription(Twist, 'cmd_vel',
                                                          self.cmdVel_callback,
                                                          10)
@@ -61,12 +57,7 @@ class ExampleController(WebotsNode):
         self.tf_broadcaster = TransformBroadcaster(self)
 
 
-    def sensor_callback(self):
-        # Publish distance sensor value
-        msg = Float64()
-        msg.data = self.frontSensor.getValue()
-        self.sensorPublisher.publish(msg)
-
+    def joint_callback(self):
         trans = self.translation_field.getSFVec3f()
         #print("MY_ROBOT is at position: %g %g %g" % (trans[0], trans[1], trans[2]))
         
