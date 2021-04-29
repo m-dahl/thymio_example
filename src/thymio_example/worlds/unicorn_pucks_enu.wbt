@@ -9,8 +9,8 @@ WorldInfo {
   lineScale 1
 }
 Viewpoint {
-  orientation -0.031074871924997007 0.6688429707348307 0.7427539517454292 3.2337553443515366
-  position -22.08928255109376 -21.09670673017166 3.0900133185526446
+  orientation 0.23361389667837115 -0.5340572608938432 -0.8125314697692101 2.3867380452779843
+  position -50.390643915751724 22.310782648611188 30.07185876882984
   near 0.1
 }
 TexturedBackground {
@@ -38,6 +38,11 @@ Transform {
             roughness 1
             metalness 0
           }
+        }
+        MotorbikeSimple {
+          translation 37.8033 0.25 51.8545
+          rotation 0 -1 0 -1.8325953071795862
+          name "vehicle(1)"
         }
         Crossroad {
           translation 17.263767 0.01 53.996262
@@ -797,7 +802,7 @@ Transform {
           splineSubdivision 0
         }
         UndergroundContainer {
-          translation 56.1405 0 43.8243
+          translation 57.0476 0 43.6678
           rotation 0 1 0 0.172
         }
         UndergroundContainer {
@@ -806,12 +811,12 @@ Transform {
           name "underground container(1)"
         }
         UndergroundContainer {
-          translation 59.0094 0 43.3276
+          translation 61.0501 0 42.9748
           rotation 0 1 0 0.172
           name "underground container(2)"
         }
         UndergroundContainer {
-          translation 61.9044 0 42.8228
+          translation 64.8317 0 42.3156
           rotation 0 1 0 0.172
           name "underground container(3)"
         }
@@ -981,6 +986,7 @@ Transform {
           numberOfLanes 1
           speedLimit 8.333333
           lines []
+          roadBorderHeight 0
           wayPoints [
             0 0 0
             -24.826281 0 4.380309
@@ -1595,8 +1601,22 @@ Transform {
           translation 0 0 119.33
         }
         RandomBuilding {
+          translation 82.1045 0 16.9908
+          rotation 0 1 0 0.172
+          floorNumber 1
+          corners [
+            -5 10
+            -5 1
+            -10 1
+            -10 10
+          ]
+          roofType "slate"
+          roofShape "flat roof"
+        }
+        RandomBuilding {
           translation 57.5993 0 21.2461
           rotation 0 1 0 0.172
+          name "building(17)"
           floorNumber 1
           corners [
             -5 10
@@ -1611,6 +1631,20 @@ Transform {
           translation 55.7275 0 10.4777
           rotation 0 1 0 0.172
           name "building(1)"
+          floorNumber 1
+          corners [
+            -5 10
+            -5 1
+            -10 1
+            -10 10
+          ]
+          roofType "slate"
+          roofShape "flat roof"
+        }
+        RandomBuilding {
+          translation 80.0445 0 6.25373
+          rotation 0 1 0 0.172
+          name "building(18)"
           floorNumber 1
           corners [
             -5 10
@@ -1867,9 +1901,15 @@ RangeRoverSportSVRSimple {
   translation -3.22723 1.06259 0.35
   rotation 0.9831056944488314 0.1294279597735375 0.1294279597735375 1.58784
 }
-Pedestrian {
-  translation -15.8 -6.08386 1.28608
-  rotation -1 0 0 -1.5707853071795865
+RangeRoverSportSVRSimple {
+  translation -34.0944 -5.99851 0.33
+  rotation -1 -3.88407e-07 3.69431e-07 -1.5708053071795867
+  name "vehicle(8)"
+}
+RangeRoverSportSVRSimple {
+  translation -38.4144 -6.71851 0.319994
+  rotation -1 -3.88407e-07 3.69431e-07 -1.5708053071795867
+  name "vehicle(9)"
 }
 Pedestrian {
   translation -23.73 -30.6139 2.12623
@@ -1880,6 +1920,18 @@ Pedestrian {
   translation -16.9318 -42.0639 1.28623
   rotation -0.18615605073823474 0.6947501893594006 0.6947431893574928 -2.773485307179586
   name "pedestrian(8)"
+  shirtColor 0.31 0.55 0.9
+}
+Pedestrian {
+  translation -24.0752 -9.1919 1.27596
+  rotation 0.0926908527780634 0.7040666413088313 0.704058641312907 2.95674
+  name "pedestrian(10)"
+  shirtColor 0.31 0.55 0.9
+}
+Pedestrian {
+  translation 4.27515 -13.1002 1.296
+  rotation 0.9351136144125264 -0.2505608966829895 -0.2505628966821648 1.63782
+  name "pedestrian(9)"
   shirtColor 0.31 0.55 0.9
 }
 DirectionPanel {
@@ -1906,6 +1958,131 @@ DirectionPanel {
   arrow FALSE
 }
 DirectionPanel {
+  translation -24.299 -8.98027 2.66119
+  rotation 0.9351136144125264 -0.2505608966829895 -0.2505628966821648 1.63784
+  name "direction panel(5)"
+  width 2
+  height 0.6
+  thickness 0.06
+  backgroundColor 1 1 1
+  textSize 0.15
+  text "I want a unicorn to meet\\nme on the way to my car"
+  arrow FALSE
+}
+DirectionPanel {
+  translation -10.7479 -0.718976 2.66119
+  rotation -0.47690602855021874 0.62151203720713 0.6215170372074293 -2.2515953071795867
+  name "direction panel(6)"
+  width 2
+  height 0.6
+  thickness 0.06
+  backgroundColor 1 1 1
+  textSize 0.15
+  text "Do you know that\\nunicorns exist?"
+  arrow FALSE
+}
+DirectionPanel {
+  translation -9.42566 -2.60133 2.66119
+  rotation -0.8628577427752423 -0.35740389345505597 -0.3574058934544597 -1.7177853071795859
+  name "direction panel(7)"
+  width 2
+  height 0.6
+  thickness 0.06
+  backgroundColor 1 1 1
+  textSize 0.15
+  text "That's so cool!\\nI'm gonna call one!"
+  arrow FALSE
+}
+DirectionPanel {
+  translation 12.5778 -7.67949 2.44122
+  rotation -0.6776629654679902 0.5199849735028663 0.5199889735026625 -1.950445307179586
+  name "direction panel(3)"
+  width 2
+  height 0.6
+  thickness 0.06
+  backgroundColor 1 1 1
+  textSize 0.15
+  text "I want to throw away\\nmy own garbage."
+  arrow FALSE
+}
+DirectionPanel {
+  translation 87.3525 -61.4093 2.44102
+  rotation -0.6776629654679902 0.5199849735028663 0.5199889735026625 -1.950445307179586
+  name "direction panel(10)"
+  width 2
+  height 0.6
+  thickness 0.06
+  backgroundColor 1 1 1
+  textSize 0.15
+  text "God, save us from\\nthese \"unicorns\"!"
+  arrow FALSE
+}
+DirectionPanel {
+  translation 3.86136 -12.9738 2.44121
+  rotation 0.9351136144125264 -0.2505608966829895 -0.2505628966821648 1.63784
+  name "direction panel(4)"
+  width 2
+  height 0.6
+  thickness 0.06
+  backgroundColor 1 1 1
+  textSize 0.15
+  text "I feel safe randomly\\ncrossing the street!"
+  arrow FALSE
+}
+DirectionPanel {
+  translation 20.7167 -22.9581 2.47121
+  rotation 0.9831060761686041 0.12942501002752663 0.12942801002775903 1.58783
+  name "direction panel(9)"
+  width 2
+  height 0.6
+  thickness 0.06
+  backgroundColor 1 1 1
+  textSize 0.15
+  text "Oh yeah, I'm cool."
+  arrow FALSE
+}
+OilBarrel {
+  translation -13.46 -19.84 0.489937
+  rotation 1 0 0 1.5708
+}
+OilBarrel {
+  translation -14.12 -19.84 0.489937
+  rotation 1 0 0 1.5708
+  name "oil barrel(1)"
+}
+OilBarrel {
+  translation -14.82 -19.84 0.489937
+  rotation 1 0 0 1.5708
+  name "oil barrel(2)"
+}
+OilBarrel {
+  translation -13.77 -20.48 0.489937
+  rotation 1 0 0 1.5708
+  name "oil barrel(3)"
+}
+OilBarrel {
+  translation -14.53 -20.5 0.489937
+  rotation 1 0 0 1.5708
+  name "oil barrel(4)"
+}
+OilBarrel {
+  translation -13.8 -20.07 1.37994
+  rotation 1 0 0 1.5708
+  name "oil barrel(5)"
+}
+DirectionPanel {
+  translation 3.62771 -20.6184 2.70121
+  rotation 1 3.58091e-07 4.02395e-08 1.5708
+  name "direction panel(8)"
+  width 2
+  height 0.6
+  thickness 0.06
+  backgroundColor 1 1 1
+  textSize 0.15
+  text "La La La La Laaaa..."
+  arrow FALSE
+}
+DirectionPanel {
   translation -17.1551 -42.2423 2.5011
   rotation 0.9351132545462786 0.25056206820525934 0.25056306820553154 1.63784
   name "direction panel(2)"
@@ -1918,28 +2095,28 @@ DirectionPanel {
   arrow FALSE
 }
 Pedestrian {
-  translation -14.8 0.706128 1.33606
-  rotation -1 0 0 -1.5707853071795865
+  translation -10.6419 -1.15185 1.33606
+  rotation 0.7745946820607067 0.44721781643546 0.4472128164375123 1.82347
   name "pedestrian(1)"
 }
 Pedestrian {
-  translation -8.96 -2.15386 2.28608
-  rotation -1 0 0 -1.5707853071795865
-  name "pedestrian(2)"
-}
-Pedestrian {
-  translation 2.98 -1.15386 2.28608
-  rotation -1 0 0 -1.5707853071795865
+  translation -0.909076 0.10523 1.26608
+  rotation -0.2810830700855425 0.6786021692033645 0.678595169201619 -2.593565307179586
   name "pedestrian(3)"
 }
 Pedestrian {
-  translation 12.22 6.28614 2.28606
-  rotation -1 0 0 -1.5707853071795865
+  translation 12.56 -7.98386 1.26606
+  rotation 0.5773479358471216 0.5773549358463438 0.5773479358471216 2.09439
   name "pedestrian(4)"
 }
 Pedestrian {
-  translation 7.47 -11.1739 1.24608
-  rotation -1 0 0 -1.5707853071795865
+  translation 86.89 -61.7039 1.27659
+  rotation 0.5773479358471216 0.5773549358463438 0.5773479358471216 2.09439
+  name "pedestrian(11)"
+}
+Pedestrian {
+  translation 1.62486 -20.9043 1.24608
+  rotation 0.9831055672070398 0.12942894302144423 0.12942794302188446 1.58783
   name "pedestrian(5)"
 }
 Pedestrian {
@@ -1949,4 +2126,68 @@ Pedestrian {
   shirtColor 0.53 0 0
   pantsColor 0 0 0
   skinColor 0.28 0.15 0.06
+}
+Pedestrian {
+  translation -9.21799 -2.26786 1.2563
+  rotation -0.2810830700855425 0.6786021692033645 0.678595169201619 -2.593565307179586
+  name "pedestrian(2)"
+  shirtColor 0.53 0 0
+  pantsColor 0 0 0
+  skinColor 0.28 0.15 0.06
+}
+TruckSimple {
+  translation 15.1999 2.84364 0.500017
+  rotation 0.9831055672070398 0.12942794302188446 0.12942894302144423 1.58784
+  trailer TruckTankSimple {
+  }
+  name "vehicle(2)"
+}
+TeslaModel3Simple {
+  translation -6.43 0.4 0.37
+  rotation 1 0 0 1.5708
+  name "vehicle(3)"
+}
+TeslaModel3Simple {
+  translation -43.7 -0.22 0.34
+  rotation 1 0 0 1.5708
+  name "vehicle(10)"
+}
+ToyotaPriusSimple {
+  translation -8.2 5.82 0.260015
+  rotation 1 0 0 1.5708
+  name "vehicle(4)"
+}
+ToyotaPriusSimple {
+  translation -40.2 0.44 0.31002
+  rotation 1 0 0 1.5708
+  name "vehicle(7)"
+}
+BmwX5Simple {
+  translation -16.58 4.53 0.360022
+  rotation 1 0 0 1.5708
+  name "vehicle(5)"
+}
+BmwX5Simple {
+  translation -30.8 -5.42 0.40002
+  rotation 1 0 0 1.5708
+  name "vehicle(6)"
+}
+BmwX5Simple {
+  translation 7.94 45.08 0.40009
+  rotation 1 0 0 1.5708
+  name "vehicle(12)"
+}
+TrafficCone {
+  translation -12.89 -18.81 -6.90922e-05
+  rotation 1 0 0 1.5708
+}
+TrafficCone {
+  translation -14.51 -19.07 -7.00471e-05
+  rotation 1 0 0 1.5708
+  name "traffic cone(1)"
+}
+TrafficCone {
+  translation -16.14 -19.34 -7.10385e-05
+  rotation 1 0 0 1.5708
+  name "traffic cone(2)"
 }
