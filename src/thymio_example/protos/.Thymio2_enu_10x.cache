@@ -1,9 +1,9 @@
 Webots Proto Cache File version 1.5
-protoFileHash: 3ac9765d6708287638db9e7ce40cfe58
+protoFileHash: 7f06af5b5f7d9b63205773d9e28ce544
 needsRobotAncestor: 1
 baseType: Robot
 slotType: 
-parameters: translation,rotation,name,controller,controllerArgs,customData,supervisor,synchronization,window,contactMaterial
+parameters: translation,rotation,scale,name,controller,controllerArgs,customData,supervisor,synchronization,window,contactMaterial
 tags: static
 license:  Copyright Cyberbotics Ltd. Licensed for use only with Webots.
 licenseUrl:  https://cyberbotics.com/webots_assets_license

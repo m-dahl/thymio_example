@@ -9,11 +9,13 @@ WorldInfo {
   lineScale 1
 }
 Viewpoint {
-  orientation 0.9999331410280528 -0.006691668885200655 0.00943053769956855 1.5054098802025022
-  position 3.711477491139796 -6.328552009796611 3.7649527682005415
+  orientation -0.031074871924997007 0.6688429707348307 0.7427539517454292 3.2337553443515366
+  position -22.08928255109376 -21.09670673017166 3.0900133185526446
   near 0.1
 }
 TexturedBackground {
+  texture "noon_sunny_empty"
+  luminosity 2
 }
 TexturedBackgroundLight {
 }
@@ -1860,4 +1862,91 @@ Thymio2_enu_10x {
   name "thymio4"
   controller "<extern>"
   supervisor TRUE
+}
+RangeRoverSportSVRSimple {
+  translation -3.22723 1.06259 0.35
+  rotation 0.9831056944488314 0.1294279597735375 0.1294279597735375 1.58784
+}
+Pedestrian {
+  translation -15.8 -6.08386 1.28608
+  rotation -1 0 0 -1.5707853071795865
+}
+Pedestrian {
+  translation -23.73 -30.6139 2.12623
+  rotation 0.5773479358471216 0.5773549358463438 0.5773479358471216 2.09439
+  name "pedestrian(7)"
+}
+Pedestrian {
+  translation -16.9318 -42.0639 1.28623
+  rotation -0.18615605073823474 0.6947501893594006 0.6947431893574928 -2.773485307179586
+  name "pedestrian(8)"
+  shirtColor 0.31 0.55 0.9
+}
+DirectionPanel {
+  translation -17.5757 -30.4094 3.0511
+  rotation 0.5773509358537164 0.5773479358540498 0.5773519358536053 2.0944
+  width 2
+  height 0.6
+  thickness 0.06
+  backgroundColor 1 1 1
+  textSize 0.15
+  text "Hey neighbour!\\nWhat's up?"
+  arrow FALSE
+}
+DirectionPanel {
+  translation -23.5356 -30.2848 3.2911
+  rotation -0.6776629654679902 0.5199849735028663 0.5199889735026625 -1.950445307179586
+  name "direction panel(1)"
+  width 2
+  height 0.6
+  thickness 0.06
+  backgroundColor 1 1 1
+  textSize 0.15
+  text "Hmm, need to get rid of\\nsome garbage today..."
+  arrow FALSE
+}
+DirectionPanel {
+  translation -17.1551 -42.2423 2.5011
+  rotation 0.9351132545462786 0.25056206820525934 0.25056306820553154 1.63784
+  name "direction panel(2)"
+  width 2
+  height 0.6
+  thickness 0.06
+  backgroundColor 1 1 1
+  textSize 0.15
+  text "Wait! I also want my\\n garbage removed!"
+  arrow FALSE
+}
+Pedestrian {
+  translation -14.8 0.706128 1.33606
+  rotation -1 0 0 -1.5707853071795865
+  name "pedestrian(1)"
+}
+Pedestrian {
+  translation -8.96 -2.15386 2.28608
+  rotation -1 0 0 -1.5707853071795865
+  name "pedestrian(2)"
+}
+Pedestrian {
+  translation 2.98 -1.15386 2.28608
+  rotation -1 0 0 -1.5707853071795865
+  name "pedestrian(3)"
+}
+Pedestrian {
+  translation 12.22 6.28614 2.28606
+  rotation -1 0 0 -1.5707853071795865
+  name "pedestrian(4)"
+}
+Pedestrian {
+  translation 7.47 -11.1739 1.24608
+  rotation -1 0 0 -1.5707853071795865
+  name "pedestrian(5)"
+}
+Pedestrian {
+  translation -17.6462 -29.9901 1.91651
+  rotation -0.4769031180540431 0.6215191538527349 0.621512153851002 -2.251585307179586
+  name "pedestrian(6)"
+  shirtColor 0.53 0 0
+  pantsColor 0 0 0
+  skinColor 0.28 0.15 0.06
 }
