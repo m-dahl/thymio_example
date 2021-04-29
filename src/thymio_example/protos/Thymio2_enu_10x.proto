@@ -8,7 +8,7 @@
 PROTO Thymio2_enu_10x [
   field SFVec3f    translation     0 0 0           # Is `Transform.translation`.
   field SFRotation rotation        1 0 0 0         # Is `Transform.rotation`.
-  field SFVec3f    scale           10 10 10        # Is `Transform.scale`.
+  field SFVec3f    scale           5 5 5           # Is `Transform.scale`.
   field SFString   name            "Thymio II"     # Is `Solid.name`.
   field SFString   controller      "thymio2_aseba" # Is `Robot.controller`.
   field MFString   controllerArgs  "port=33333"    # Is `Robot.controllerArgs`.
@@ -33,9 +33,9 @@ PROTO Thymio2_enu_10x [
     model "Thymio II"
     children [
       Transform {
-        translation -0.130000 0.000000 0.08000
+        translation 0.0175 0.000000 0.025
         rotation 0.000000 0.000000 1.0 1.5708
-        scale 0.0001 0.0001 0.0001
+        scale 0.0002 0.0002 0.0002
         children[
               Shape {
                 appearance DEF DarkGreen PBRAppearance {
@@ -57,28 +57,28 @@ PROTO Thymio2_enu_10x [
               Transform {
         rotation 0 1 0 1.5708
         children [
-      Transform {
-        children [
-          Shape {
-            appearance DEF MAIN_APPEARANCE PBRAppearance {
-              baseColor 1 1 1
-              roughness 0.1
-              metalness 0
-            }
-            geometry Thymio2MainIndexedFaceSet {
-            }
-          }
-          Shape {
-            appearance PBRAppearance {
-              baseColor 0.1 0.1 0.1
-              roughness 0.2
-              metalness 0
-            }
-            geometry Thymio2SecondaryIndexedFaceSet {
-            }
-          }
-        ]
-      }
+      # Transform {
+        # children [
+          # Shape {
+            # appearance DEF MAIN_APPEARANCE PBRAppearance {
+              # baseColor 1 1 1
+              # roughness 0.1
+              # metalness 0
+            # }
+            # geometry Thymio2MainIndexedFaceSet {
+            # }
+          # }
+          # Shape {
+            # appearance PBRAppearance {
+              # baseColor 0.1 0.1 0.1
+              # roughness 0.2
+              # metalness 0
+            # }
+            # geometry Thymio2SecondaryIndexedFaceSet {
+            # }
+          # }
+        # ]
+      # }
       HingeJoint {
         jointParameters HingeJointParameters {
           anchor -0.05 0.021 0
