@@ -33,7 +33,7 @@ from nav2_common.launch import ReplaceString
 def generate_launch_description():
     webots = WebotsLauncher(
         world=os.path.join(get_package_share_directory('thymio_example'), 'worlds',
-                           'ros_example.wbt')
+                           'unicorn_pucks_enu.wbt')
     )
 
     stop_webots = launch.actions.RegisterEventHandler(
@@ -100,4 +100,4 @@ def make_thymio(name):
                           'use_namespace': 'True',
                           'rviz_config': rviz_config}.items())
     
-    return [controller, nav2, rviz]
+    return [controller] #, nav2, rviz]

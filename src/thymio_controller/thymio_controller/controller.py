@@ -126,8 +126,8 @@ class ExampleController(WebotsNode):
         return response
 
     def cmdVel_callback(self, msg):
-        wheelGap = 0.1  # in meter
-        wheelRadius = 0.021  # in meter
+        wheelGap = 1  # in meter
+        wheelRadius = 0.21  # in meter
         leftSpeed = ((2.0 * msg.linear.x - msg.angular.z * wheelGap) /
                      (2.0 * wheelRadius))
         rightSpeed = ((2.0 * msg.linear.x + msg.angular.z * wheelGap) /

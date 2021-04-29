@@ -31,6 +31,25 @@ PROTO Thymio2_enu [
     model "Thymio II"
     children [
       Transform {
+        translation -0.130000 0.000000 0.08000
+        rotation 0.000000 0.000000 1.0 1.5708
+        scale 0.001 0.001 0.001
+        children[
+              Shape {
+                appearance DEF DarkGreen PBRAppearance {
+                  baseColor 0.0 0.0 0.0
+                  transparency 0.000000
+                  roughness 0.000
+                  metalness 1.0
+                  emissiveColor 0.0 0.0 0.0
+                }
+                geometry Mesh {
+                  url ["/home/unicorn/foxy_ws/src/unicorn_description/urdf/am_chassis.stl"]
+                }
+              }
+            ]
+      }
+      Transform {
         rotation 1 0 0 1.5708
         children [
               Transform {
@@ -187,7 +206,7 @@ PROTO Thymio2_enu [
     }
     physics Physics {
       density -1
-      mass 0.1
+      mass 0.08
     }
   }
 }
