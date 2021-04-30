@@ -4,13 +4,14 @@ WorldInfo {
     "World generated using the Open Street Map to Webots importer"
     "Author: David Mansolino <david.mansolino@epfl.ch>"
   ]
+  basicTimeStep 16
   gpsCoordinateSystem "WGS84"
   gpsReference 57.65428 11.88017 0
   lineScale 1
 }
 Viewpoint {
-  orientation 0.23361389667837115 -0.5340572608938432 -0.8125314697692101 2.3867380452779843
-  position -50.390643915751724 22.310782648611188 30.07185876882984
+  orientation 0.03503720917610737 -0.46614993518051745 -0.8840116695521327 2.927390476066085
+  position -6.5182630289258 34.225180238537774 31.538410396544073
   near 0.1
 }
 TexturedBackground {
@@ -1899,7 +1900,12 @@ Thymio2_enu_10x {
 }
 RangeRoverSportSVRSimple {
   translation -3.22723 1.06259 0.35
+  rotation 0.9831056944488313 0.1294279597735375 0.1294279597735375 1.5878353071795859
+}
+RangeRoverSportSVRSimple {
+  translation -17.4514 -0.966721 0.38
   rotation 0.9831056944488314 0.1294279597735375 0.1294279597735375 1.58784
+  name "vehicle(11)"
 }
 RangeRoverSportSVRSimple {
   translation -34.0944 -5.99851 0.33
@@ -2136,8 +2142,8 @@ Pedestrian {
   skinColor 0.28 0.15 0.06
 }
 TruckSimple {
-  translation 15.1999 2.84364 0.500017
-  rotation 0.9831055672070398 0.12942794302188446 0.12942894302144423 1.58784
+  translation 14.434 2.70285 0.562282
+  rotation 0.9927941930973327 0.08473321648051349 0.08473471648080524 1.5727003372240693
   trailer TruckTankSimple {
   }
   name "vehicle(2)"
@@ -2162,6 +2168,11 @@ ToyotaPriusSimple {
   rotation 1 0 0 1.5708
   name "vehicle(7)"
 }
+ToyotaPriusSimple {
+  translation -48.78 -8.48 0.28002
+  rotation 1 0 0 1.5708
+  name "vehicle(13)"
+}
 BmwX5Simple {
   translation -16.58 4.53 0.360022
   rotation 1 0 0 1.5708
@@ -2173,8 +2184,8 @@ BmwX5Simple {
   name "vehicle(6)"
 }
 BmwX5Simple {
-  translation 7.94 45.08 0.40009
-  rotation 1 0 0 1.5708
+  translation 7.461 45.0113 0.389387
+  rotation 0.9914377673558835 0.08498038005907574 0.09914377673558834 1.5793953199694428
   name "vehicle(12)"
 }
 TrafficCone {
