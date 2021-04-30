@@ -33,7 +33,7 @@ class ExampleController(WebotsNode):
 
     def __init__(self, args):
         super().__init__('example_controller', args)
-        self.jointTimer = self.create_timer(0.05, self.joint_callback)
+        self.jointTimer = self.create_timer(0.01, self.joint_callback)
         self.leftMotor = self.robot.getMotor('motor.left')
         self.rightMotor = self.robot.getMotor('motor.right')
         self.leftMotor.setPosition(float('inf'))
@@ -106,8 +106,8 @@ class ExampleController(WebotsNode):
 
         self.tf_broadcaster.sendTransform(base_link_tf)
 
-        odom_tf.transform.translation.x = 0.0;
-        odom_tf.transform.translation.y = 0.0;
+        odom_tf.transform.translation.x = 100.0;
+        odom_tf.transform.translation.y = 100.0;
         odom_tf.transform.translation.z = 0.0;
 
         odom_tf.transform.rotation.x = 0.0
